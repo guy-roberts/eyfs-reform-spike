@@ -3,7 +3,7 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
-        <h3 class="govuk-heading-m">About the page</h3>
+        <h3 class="govuk-heading-m">Details</h3>
         <%= form_with(model: content_page, local: true) do |form| %>
           <% if content_page.errors.any? %>
             <div id="error_explanation" class="govuk-error-message" >
@@ -22,7 +22,7 @@
               <label class="govuk-label" for="title">
                 <%= form.label :title, "Heading" %>
               </label>
-              <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
+              <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters', :disabled => (@content_page.title && !@content_page.parent_id) %>
             </div>
 
             <div class="govuk-form-group">
@@ -32,11 +32,11 @@
               <%= form.text_area :subtitle, :rows => 5, :cols => 35, :class => "govuk-textarea"%>
             </div>
 
-            <div class="govuk-form-group">
+            <div class="govuk-form-group gem-c-govspeak">
               <div id="markdown-hint" class="govuk-hint">
-                Markdown
+                Content
               </div>
-              <%= form.text_area :markdown, :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
+              <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
             </div>
             <div class="govuk-form-group">
               <label class="govuk-label" for="seo">
@@ -64,14 +64,10 @@
       </div>
 
       <div class="govuk-grid-column-one-half">
-          <h3 class="govuk-heading-m">Preview</h3>
-          <% if @content_page.parent %>
-            <span class="govuk-caption-l"><%= @content_page.parent.title %></span>
-          <% end %>
-          <h1 class="govuk-heading-l"><%= @content_page.title %></h1>
-          <p>
+          <h3 class="govuk-heading-m">Live Preview</h3>
+          <div id='markdown-render' class='gem-c-govspeak'>
             <%= sanitize @md %>
-          </p>
+          </div>
       </div>
     </div>
   </main>

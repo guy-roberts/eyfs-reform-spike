@@ -33,11 +33,10 @@ RSpec.describe "/content_pages", type: :request do
   end
 
   describe "GET /index" do
-    parent_page = FactoryBot.create(:content_page)
-    child_page = FactoryBot.create(:content_page)
-
     it "renders a successful response" do
-      ContentPage.create! valid_attributes
+      parent_page = FactoryBot.create(:content_page)
+      child_page = FactoryBot.create(:content_page)
+
       get content_pages_url
       expect(response).to be_successful
       expect(response.body).to include(parent_page.title)
@@ -79,14 +78,13 @@ RSpec.describe "/content_pages", type: :request do
         post content_pages_url, params: { content_page: valid_attributes }
         expect(response).to redirect_to(content_page_url(::ContentPage.last))
       end
-      # The feature works, the test does not ! TODO
-      xit "prevents pages from having duplicate titles (and therefore slugs)" do
+      it "prevents pages from having duplicate titles (and therefore slugs)" do
         post content_pages_url, params: { content_page: valid_attributes }
 
         other_valid_attributes[:title] = valid_attributes[:title]
         post content_pages_url, params: { content_page: other_valid_attributes }
 
-        expect(response).to_not be_successful
+        expect(response.body).to include("Title has already been taken")
       end
     end
 
