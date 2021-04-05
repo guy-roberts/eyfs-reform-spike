@@ -9,7 +9,7 @@ It allows editors to create a set of nested pages, and to edit the headings,
 overview and content as [Markdown](https://en.wikipedia.org/wiki/Markdown).
 
 These are some examples of the cut down CMS and two resulting pages
-all in UK.GOV style
+all in UK.GOV style;
 
 ![The CMS view](docs/cms-view.png?raw=true "The CMS view"seed)
 ![Example page](docs/public-view-of-a-page.png?raw=true "Example page")
@@ -86,6 +86,9 @@ When a branch is merged into `main`
 
 - a docker image is built and pushed to [DockerHub](https://hub.docker.com/repository/docker/dfedigital/eyfsreform)
 
+### Documentation
+
+Check out [documentation](/documentation) folder
 
 # The following is from the template repository GOV.UK Rails Boilerplate
 
@@ -179,4 +182,37 @@ Note: Docker can't be used to connect to AWS
 5. Run `cf push` to push the app to Cloud Foundry Application Runtime
 
 Check the file `manifest.yml` for customisation of name (you may need to change it as there could be a conflict on that name), buildpacks and eventual services (PostgreSQL needs to be [set up](https://docs.cloud.service.gov.uk/deploying_services/postgresql/)).
+
+## Cucumber Tests
+
+### To run
+- They can be run manually in IDE
+- Command line
+- Intention for these integration / e2e tests to run in AWS CI pipeline
+
+#### IDE
+Right click on 'Feature' and run 
+Or 
+Run - Edit Configurations (depending on IDE)
+
+#### Command Line  
+cucumber --color -r e2etestname.feature
+ 
+#### AWS CI pipeline (Drone.yml configuration)
+``` 
+- Ruby E2E Tests
+-   e2e-test:
+-     group: ?
+-     image: ruby:2.7.2
+-     commands:
+-       - cd e2etests
+-       - gem install bundler
+-       - bundle install
+-       - cucumber --color -r features -p [insert env]
+-     when:
+-       trigger:
+-         branch:
+-           - tbc/*
+-         event:
+-           - push
 

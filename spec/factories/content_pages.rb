@@ -9,8 +9,6 @@ end
 FactoryBot.define do
   factory :content_page do
     title { sentence_without_puncutation }
-    subtitle { Faker::Lorem.paragraph }
-    seo { "SEO#{Faker::Lorem.sentence(word_count: 4)}" }
     markdown { Faker::Markdown.headers }
     parent_id { nil }
     position { ContentPage.maximum("position").nil? ? 1 : ContentPage.maximum("position") + 1 }
@@ -32,8 +30,12 @@ FactoryBot.define do
     title { "#{Faker::Lorem.word},#{Faker::Lorem.word}" }
   end
 
-  trait :fullstop_in_title do
-    title { "#{Faker::Lorem.word}.#{Faker::Lorem.word}" }
+  trait :colon_in_title do
+    title { "#{Faker::Lorem.word}:#{Faker::Lorem.word}" }
+  end
+
+  trait :round_braces_in_title do
+    title { "#{Faker::Lorem.word}(#{Faker::Lorem.word})" }
   end
 
   trait :two_hyphens_and_a_space_in_title do
