@@ -22,7 +22,7 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/1/edit
   def edit
-    @md = GovspeakToHTML.new.translate_markdown(@content_page.markdown)
+    @md = GovspeakToHtml.new.translate_markdown(@content_page.markdown)
 
     @content_page
   end
@@ -56,7 +56,7 @@ class ContentPagesController < ApplicationController
   # POST of preview, returns html
   def preview
     Rails.logger.silence do
-      html = GovspeakToHTML.new.translate_markdown(params["markdown"])
+      html = GovspeakToHtml.new.translate_markdown(params["markdown"])
 
       render json: { html: html }
     end

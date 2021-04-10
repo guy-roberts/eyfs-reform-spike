@@ -1,4 +1,6 @@
 class ContentController < ApplicationController
+  # require "../services/govspeak_to_html"
+
   layout "content"
 
   # This is a page whose title and children's titles are rendered in
@@ -19,7 +21,7 @@ class ContentController < ApplicationController
       end
     end
 
-    @markdown = ::GovspeakToHTML.new.translate_markdown(@page.markdown)
+    @markdown = GovspeakToHtml.new.translate_markdown(@page.markdown)
     @page
   end
 
