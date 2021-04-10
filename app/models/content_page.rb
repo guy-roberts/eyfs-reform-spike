@@ -21,6 +21,10 @@ class ContentPage < ApplicationRecord
     ContentPage.reorder
   end
 
+  after_delete do
+    ContentPage.reorder
+  end
+
   after_save do
     if saved_change_to_position?
       ContentPage.reorder
