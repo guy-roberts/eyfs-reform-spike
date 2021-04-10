@@ -1,6 +1,4 @@
 class ContentController < ApplicationController
-  # require "../services/govspeak_to_html"
-  require 'govspeak_to_html'
   layout "content"
 
   # This is a page whose title and children's titles are rendered in
