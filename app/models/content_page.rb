@@ -21,7 +21,7 @@ class ContentPage < ApplicationRecord
     ContentPage.reorder
   end
 
-  after_delete do
+  after_destroy do
     ContentPage.reorder
   end
 

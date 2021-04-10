@@ -1,5 +1,5 @@
 class GovspeakToHtml
-  ALLOWED_TAGS = %w[details summary p h1 h2 h3 h4 ul li img div ol a span strong iframe blockquote].freeze
+  ALLOWED_TAGS = %w[details summary p h1 h2 h3 h4 ul li img div ol a span strong iframe blockquote table tr td th tbody thead].freeze
 
   def translate_markdown(markdown)
     newdoc = GovspeakDecorator.new(doc(markdown))
