@@ -2,8 +2,10 @@
 # Markdown depends on this indentation, rubocop wants to enforce
 # two leading space.  Rubocop can get lost
 
-markdown_for_understanding_the_world = <<-MARKDOWN_FOR_UNDERSTANDING_THE_WORLD
-Access resources, activity ideas and advice for teaching understanding the world to early years children.
+markdown_for_top_page = <<-MARKDOWN_FOR_TOP_PAGE
+
+
+## Resources for members
 
 ### Understanding the world resources
 
@@ -24,18 +26,19 @@ In addition, listening to a broad selection of stories, non-fiction, rhymes and 
 As well as building important knowledge, this extends their familiarity with words that support understanding across domains.
 
 Enriching and widening children’s vocabulary will support later reading comprehension.
-MARKDOWN_FOR_UNDERSTANDING_THE_WORLD
+
+[![Early Years Foundation Stage: Children build a number line](http://img.youtube.com/vi/SYhhCcokBF8/0.jpg)](http://www.youtube.com/watch?v=SYhhCcokBF8)
+
+MARKDOWN_FOR_TOP_PAGE
 
 understanding_the_world = {
-  title: "Understanding the world",
-  markdown: markdown_for_understanding_the_world,
+  title: "Resources for members",
+  markdown: markdown_for_top_page,
   position: 6,
 }
 understanding_the_world_page = ContentPage.new understanding_the_world
 understanding_the_world_page.save!
 
-#####################################################################################
-# Child pages below
 #
 markdown_for_personal_experiences = <<-MARKDOWN_FOR_PERSONAL_EXPERIENCES
 

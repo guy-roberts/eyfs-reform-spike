@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "/check" => "application#check"
 
   # Note These have to be above the wildcard route
   get "/404", to: "errors#not_found", via: :all

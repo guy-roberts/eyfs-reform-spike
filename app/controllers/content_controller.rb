@@ -25,13 +25,8 @@ class ContentController < ApplicationController
 
   # GET /
   def index
-    @featured_page = ContentPage.find_by_title FEATURED_PAGE_TITLE
-    # Don't show featured pages in the cards
-    @content_pages = ContentPage.top_level.order_by_position - [@featured_page]
-
-    respond_to do |format|
-      format.html { render layout: "landing_page_layout" }
-    end
+    # Redirect to show the first page
+    redirect_to "/" + ContentPage.first.full_path
   end
 
 private
